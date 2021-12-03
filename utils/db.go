@@ -3,7 +3,7 @@ package utils
 import (
 	"database/sql"
 
-	//_ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var (
@@ -12,7 +12,7 @@ var (
 )
 
 func init() {
-	Db, err = sql.Open("mysql", "root:QWERasdfZXCV@tcp(192.168.24.27:3306)/bookstore")
+	Db, err = sql.Open("mysql", "root:QWERasdfZXCV@tcp(192.168.24.27:30884)/bookstore")
 
 	if err != nil {
 		panic(err.Error())
