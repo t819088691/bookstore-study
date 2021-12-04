@@ -17,6 +17,7 @@ func main() {
 	//	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("/views/static"))))
 	http.Handle("/pages/", http.StripPrefix("/pages/", http.FileServer(http.Dir("views/pages"))))
 	http.HandleFunc("/login", controller.Login)
+	http.HandleFunc("/regist", controller.Regist)
 
 	http.ListenAndServe(":8080", nil)
 }

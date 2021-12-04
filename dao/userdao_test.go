@@ -11,10 +11,10 @@ func TestCheckUserNameAndPassword(t *testing.T) {
 }
 
 func TestCheckUserName(t *testing.T) {
-	user, _ := CheckUserName("admin1")
+	user, _ := CheckUserName("admin")
 	fmt.Println("user = ", user)
 }
 
 func TestSaveUser(t *testing.T) {
-	SaveUser("admin1", "123456", "admin@qq.com")
+	SaveUser("test", "123456", "test@qq.com")
 }

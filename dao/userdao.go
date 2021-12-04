@@ -16,11 +16,12 @@ func CheckUserNameAndPassword(username string, password string) (*model.User, er
 
 func CheckUserName(username string) (*model.User, error) {
 
-	sql := "select id,username,password,email from users where username = ?"
+	sql := "select id,username,password,email from users where username = ? ;"
 	row := utils.Db.QueryRow(sql, username)
 	user := &model.User{}
-	err := row.Scan(&user.ID, &user.Username, &user.Password, &user.Email)
-	return user, err
+	row.Scan(&user.ID, &user.Username, &user.Password, &user.Email)
+	return user, nil
+
 }
 
 func SaveUser(username string, password string, email string) error {
