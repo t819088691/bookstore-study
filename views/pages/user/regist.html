@@ -11,6 +11,52 @@
 	}
 	
 </style>
+<script src="/static/script/jquery-1.7.2.js"></script>
+<script>
+	$(function(){
+		$("#sub_btn").click(function(){
+			var username = $("#username").val();  //获取用户输入的用户名 
+			var usernameReg = /^[a-zA-Z0-9_-]{3,16}$/; //设置用户名的正这表达式
+
+			var flag = usernameReg.test(username);  //获取用户名
+			if(!flag){  //如果用户输入的用户名不满足正则表达式的要求
+				alert("please enter a user name of 3-16num,letter and symbol"); //输出 请输入满足要求的用户名
+				return false; //返回
+			}
+
+			var password = $("#password").val(); //获取密码
+			var passwordReg = /^[a-zA-Z0-9_-]{6,18}$/; //设置密码的正则表达式
+			if(!passwordReg.test(password)){  //判断
+				alert("请输入6-18位的数字、字母、下划线或减号的密码");
+				return false; //返回
+			}
+
+			var repwd = $("#repwd").val(); //获取第二次输入的密码
+			if(repwd == ""){  //判断
+				alert("确认密码不能为空");
+				return false; //返回
+			}
+
+			if (repwd != password){//如果两次密码不一致
+				$("#repwd").val(""); //将确认的密码设为空
+				alert("The two passwords you typed do not match");//输出两次密码不一致z
+				return false; //返回false
+			}
+
+			var email = $("#email").val(); //获取用户输入的邮箱
+			var emailReg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/; 
+			if(!emailReg.test(email)){ //如果输入的邮箱不满足要求
+				alert("The mail format is incorrect"); //输出邮箱格式不正确
+				return false; //返回
+			}
+
+		});
+		$("#msg").hide(); //隐藏 msg
+		if ("{{.}}" == "用户名已经存在"){ //判断 获取的msg和 预期一致
+			$("#msg").show();  //显示msg
+		}
+	});
+</script>
 </head>
 <body>
 		<div id="login_header">
@@ -28,7 +74,7 @@
 						<div class="login_box">
 							<div class="tit">
 								<h1>注册会员</h1>
-								<span class="errorMsg"></span>
+								<span class="errorMsg" id = "msg" >{{.}}</span> 
 							</div>
 							<br>
 							<div class="form">

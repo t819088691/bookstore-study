@@ -28,10 +28,10 @@ func Regist(w http.ResponseWriter, r *http.Request) {
 	user, _ := dao.CheckUserName(username)
 	if user.ID > 0 {
 		t := template.Must(template.ParseFiles("views/pages/user/regist.html"))
-		t.Execute(w, "")
+		t.Execute(w, "用户名已经存在")
 	} else {
 		dao.SaveUser(username, password, email)
 		t := template.Must(template.ParseFiles("views/pages/user/regist_success.html"))
-		t.Execute(w, "")
+		t.Execute(w, "用户名或密码不正确")
 	}
 }
