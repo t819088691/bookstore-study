@@ -16,7 +16,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, "")
 	} else {
 		t := template.Must(template.ParseFiles("views/pages/user/login.html"))
-		t.Execute(w, "")
+		t.Execute(w, "用户名或密码不正确")
 	}
 }
 

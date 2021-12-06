@@ -18,9 +18,9 @@
 			var username = $("#username").val();  //获取用户输入的用户名 
 			var usernameReg = /^[a-zA-Z0-9_-]{3,16}$/; //设置用户名的正这表达式
 
-			var flag = usernameReg.test(username);  //获取用户名
+			var flag = usernameReg.test(username);  //用户名匹配表达式
 			if(!flag){  //如果用户输入的用户名不满足正则表达式的要求
-				alert("please enter a user name of 3-16num,letter and symbol"); //输出 请输入满足要求的用户名
+				alert("请输入3-16位的数字、字母、下划线或减号的用户名"); //输出 请输入满足要求的用户名
 				return false; //返回
 			}
 
