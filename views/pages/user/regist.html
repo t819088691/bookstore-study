@@ -55,6 +55,32 @@
 		if ("{{.}}" == "用户名已经存在"){ //判断 获取的msg和 预期一致
 			$("#msg").show();  //显示msg
 		}
+
+
+		//给用户输入的数据绑定change事件
+		$("#username").change(function(){
+
+			//获取用户输入的value
+			var username = $(this).val();
+
+			//设置请求的url地址，后端将获取这个url进行判断
+			var url = "/checkUserName"
+
+			//设置请求参数
+			var param = {"username":username}
+
+			//发送ajax请求
+			$.post(url,param,function(res){
+				
+				//显示提示信息的span元素显示
+				$("#msg").show();
+
+				//将响应信息显示到span元素
+				$("#msg").html(res)
+			});
+		});
+
+
 	});
 </script>
 </head>

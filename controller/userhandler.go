@@ -35,3 +35,15 @@ func Regist(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, "用户名或密码不正确")
 	}
 }
+
+
+//判断用户名的是否在数据库存在，返回msg
+func CheckUserName(w http.ResponseWriter, r *http.Request) {
+	username := r.PostFormValue("username")
+	user, _ := dao.CheckUserName(username)
+	if user.ID > 0 {
+		w.Write([]byte("用户名已存在"))
+	} else {
+		w.Write([]byte("<font style = 'color:green'>用户名可用 </font>"))
+	}
+}

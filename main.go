@@ -19,5 +19,9 @@ func main() {
 	http.HandleFunc("/login", controller.Login)
 	http.HandleFunc("/regist", controller.Regist)
 
+	//获取ajax url，调用controller判断
+	http.HandleFunc("/checkUserName",controller.CheckUserName)
+
+
 	http.ListenAndServe(":8080", nil)
 }
