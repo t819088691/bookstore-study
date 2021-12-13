@@ -21,3 +21,21 @@ func GetBooks() ([]*model.Book, error) {
 	return books, nil
 
 }
+
+func DeleteBook(bookID string) error {
+	sql := "delete from books where id = ?"
+	_, error := utils.Db.Exec(sql, bookID)
+	if error != nil {
+		return error
+	}
+	return nil
+}
+
+
+func GetBookByID(bookID string) (*model.Book, error) {
+	sql := "sid,title,author,price,sales,stock,img_path from books where ID = ?"
+	row := utils.Db.QueryRow(sql, bookID)
+	book := &model.Book{}
+	row.Scan(&book.ID, &book.Title, &book.Author, &book.Price, &book.Sales, &book.Stock, &book.ImgPath)
+	return book, nil
+}

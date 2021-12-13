@@ -5,13 +5,26 @@
 <title>图书管理</title>
 <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
 </head>
+<script src="/static/script/jquery-1.7.2.js"></script>
+<script>
+	$(function() {
+		$(".deleteBook").click(
+			function () {
+				var title = $(this).attr("id");
+				return confirm ("确定要删除["+title+"]吗")
+		})
+		
+	})
+</script>
+
+
 <body>
 	
 	<div id="header">
 			<img class="logo_img" alt="" src="/static/img/logo.gif" >
 			<span class="wel_word">图书管理系统</span>
 			<div>
-				<a href="/pages/manager/book_manager.html">图书管理</a>
+				<a href="/getBooks">图书管理</a>
 				<a href="/">返回商城</a>
 			</div>
 	</div>
@@ -34,8 +47,8 @@
 				<td>{{.Price}}</td>
 				<td>{{.Sales}}</td>
 				<td>{{.Stock}}</td>
-				<td><a href="book_edit.html">修改</a></td>
-				<td><a href="#">删除</a></td>
+				<td><a href="/updateBook?bookID={{.ID}}">修改</a></td>
+				<td><a id="{{.Title}}" class="deleteBook" href="/deleteBook?bookId={{.ID}}">删除</a></td>
 			</tr>	
 			{{end}}
 			
